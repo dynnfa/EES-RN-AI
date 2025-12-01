@@ -9,6 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "prepare": "husky"
   },
   "dependencies": {
@@ -39,6 +41,7 @@
     "react-native-worklets": "0.5.1"
   },
   "devDependencies": {
+    "prettier": "^3.7.3",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@types/react": "~19.1.0",
