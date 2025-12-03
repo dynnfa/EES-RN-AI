@@ -1,19 +1,19 @@
-# Workflow 迁移指南：Managed → Bare
+# Workflow Migration Guide: Managed → Bare
 
-## 🚀 项目概述
+## 🚀 Project Overview
 
-本项目已成功从 **Expo Managed Workflow** 迁移至 **Bare Workflow**，获得完整的原生代码访问权限。
+This project has successfully migrated from **Expo Managed Workflow** to **Bare Workflow**, gaining full native code access.
 
-## 📋 主要变更
+## 📋 Major Changes
 
-### 1. 核心依赖更新
+### 1. Core Dependency Updates
 
-- **React Native**: `0.81.5` (最新稳定版)
+- **React Native**: `0.81.5` (Latest stable version)
 - **Expo SDK**: `54.0.25`
-- **Expo Dev Client**: `~6.0.18` (新增，用于原生模块开发)
-- **New Architecture**: 已启用 (`newArchEnabled: true`)
+- **Expo Dev Client**: `~6.0.18` (New addition, for native module development)
+- **New Architecture**: Enabled (`newArchEnabled: true`)
 
-### 2. 开发命令变更
+### 2. Development Command Changes
 
 ```json
 {
@@ -23,117 +23,117 @@
 }
 ```
 
-### 3. 架构升级
+### 3. Architecture Upgrades
 
-- ✅ **TypeScript**: 支持类型安全开发
-- ✅ **Metro Bundler**: 现代化打包工具
-- ✅ **Expo Router**: 文件系统路由
-- ✅ **NativeWind**: 原子化CSS框架
-- ✅ **React Compiler**: 自动优化渲染
+- ✅ **TypeScript**: Type-safe development support
+- ✅ **Metro Bundler**: Modern bundling tool
+- ✅ **Expo Router**: File-system based routing
+- ✅ **NativeWind**: Atomic CSS framework
+- ✅ **React Compiler**: Automatic optimization for rendering
 
-## ⚠️ 开发注意事项
+## ⚠️ Development Notes
 
-### Dev Client 使用
+### Dev Client Usage
 
 ```bash
-# 安装依赖
+# Install dependencies
 npm install
 
-# 启动开发服务器
+# Start development server
 npm run start
 
-# 在设备上测试
-npm run android  # Android设备
-npm run ios      # iOS设备
+# Test on device
+npm run android  # Android device
+npm run ios      # iOS device
 ```
 
-### 原生模块开发
+### Native Module Development
 
-1. **新增原生模块**：
+1. **Add New Native Module**:
 
    ```bash
-   # 在项目根目录创建原生模块
+   # Create native module in project root
    expo install some-native-package
-   npx expo run:android  # 重新构建Android
-   npx expo run:ios      # 重新构建iOS
+   npx expo run:android  # Rebuild Android
+   npx expo run:ios      # Rebuild iOS
    ```
 
-2. **Android 配置**：
-   - 访问 `android/` 目录进行原生配置
-   - 遵循 Android 官方开发规范
+2. **Android Configuration**:
+   - Access `android/` directory for native configuration
+   - Follow Android official development guidelines
 
-3. **iOS 配置**：
-   - 访问 `ios/` 目录进行原生配置
-   - 使用 Xcode 进行 iOS 原生开发
+3. **iOS Configuration**:
+   - Access `ios/` directory for native configuration
+   - Use Xcode for iOS native development
 
-### 性能优化
+### Performance Optimization
 
-- ✅ **Hermes 引擎**: 已启用，提供更好的JavaScript性能
-- ✅ **Fabric 渲染器**: 新架构渲染，提升UI性能
-- ✅ **JSI 支持**: 原生JavaScript接口，提升模块间通信效率
+- ✅ **Hermes Engine**: Enabled for better JavaScript performance
+- ✅ **Fabric Renderer**: New architecture renderer, improved UI performance
+- ✅ **JSI Support**: Native JavaScript interface, improved inter-module communication efficiency
 
-### 调试工具
+### Debugging Tools
 
-- **Flipper**: 支持React Native调试
-- **React Native Debugger**: 支持Redux DevTools
-- **Chrome DevTools**: 标准Web调试工具
-- **Expo Dev Tools**: Expo专属开发工具
+- **Flipper**: React Native debugging support
+- **React Native Debugger**: Redux DevTools support
+- **Chrome DevTools**: Standard web debugging tools
+- **Expo Dev Tools**: Expo-specific development tools
 
-## 🔧 常见问题解决
+## 🔧 Common Issues Resolution
 
-### 构建失败
+### Build Failures
 
 ```bash
-# 清理缓存
+# Clear cache
 npx expo install --fix
 
-# 重新安装依赖
+# Reinstall dependencies
 rm -rf node_modules && npm install
 
-# 清理原生构建
+# Clean native builds
 cd android && ./gradlew clean && cd ..
 cd ios && xcodebuild clean && cd ..
 ```
 
-### Dev Client 问题
+### Dev Client Issues
 
-1. **确保开发设备已安装Dev Client**
-2. **重新构建Dev Client**:
+1. **Ensure dev device has Dev Client installed**
+2. **Rebuild Dev Client**:
    ```bash
-   expo run:android  # 会自动构建Dev Client
-   expo run:ios      # 会自动构建Dev Client
+   expo run:android  # Will automatically build Dev Client
+   expo run:ios      # Will automatically build Dev Client
    ```
 
-### 依赖冲突
+### Dependency Conflicts
 
 ```bash
-# 使用Expo兼容性检查
+# Use Expo compatibility check
 npx expo doctor
 
-# 修复依赖版本
+# Fix dependency versions
 npx expo install --fix
 ```
 
-## 📁 项目结构
+## 📁 Project Structure
 
 ```
-├── android/          # Android原生代码
-├── ios/              # iOS原生代码
-├── app/              # 应用路由
-├── components/       # React组件
-├── hooks/            # 自定义Hooks
-├── modules/          # 原生模块代码
-└── plugins/          # Expo插件配置
+├── android/          # Android native code
+├── ios/              # iOS native code
+├── app/              # Application routing
+├── components/       # React components
+├── hooks/            # Custom Hooks
+├── modules/          # Native module code
+└── plugins/          # Expo plugin configuration
 ```
 
-## 🎯 迁移优势
+## 🎯 Migration Benefits
 
-1. **完整原生访问**: 可使用任意React Native和原生库
-2. **性能提升**: New Architecture + Hermes引擎
-3. **开发灵活性**: 自定义原生功能不受限制
-4. **长期维护**: 紧跟React Native最新版本
-5. **调试增强**: 完整的原生调试工具链
+1. **Full Native Access**: Can use any React Native and native libraries
+2. **Performance Improvements**: New Architecture + Hermes engine
+3. **Development Flexibility**: Custom native features without restrictions
+4. **Long-term Maintenance**: Keep up with latest React Native versions
+5. **Enhanced Debugging**: Complete native debugging toolchain
 
 ---
 
-_文档版本: v1.0 | 最后更新: 2024年_
+_Document Version: v1.0 | Last Updated: 2024_

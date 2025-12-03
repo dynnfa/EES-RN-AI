@@ -1,6 +1,51 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "extends": ["config:recommended"],
+  "schedule": ["before 9am on Monday"],
+  "timezone": "Asia/Shanghai",
+  "prConcurrentLimit": 10,
+  "rebaseWhen": "conflicted",
+  "automerge": false,
+  "packageRules": [
+    {
+      "description": "Expo core packages and React Native core packages require careful updating",
+      "matchPackagePatterns": ["^expo-", "^react-native$", "^react$", "^react-dom$"],
+      "automerge": false,
+      "stabilityDays": 3
+    },
+    {
+      "description": "React Native ecosystem packages require special handling",
+      "matchPackagePatterns": ["@react-navigation/", "@react-native/", "react-native-"],
+      "automerge": false,
+      "stabilityDays": 3
+    },
+    {
+      "description": "Development tools and configuration packages can be updated more frequently",
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "stabilityDays": 1
+    },
+    {
+      "description": "NativeWind and styling related packages",
+      "matchPackagePatterns": ["nativewind", "tailwindcss", "tailwind-variants"],
+      "stabilityDays": 2
+    },
+    {
+      "description": "Block React Native major version updates",
+      "matchPackageNames": ["react-native"],
+      "allowedVersions": "< 1.0.0"
+    },
+    {
+      "description": "Block major version updates",
+      "matchCurrentVersion": "/^0\\./",
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "Automatically merge minor and patch version security updates",
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true
+    }
   ]
 }
