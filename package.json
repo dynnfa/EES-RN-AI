@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "license": "MIT",
+  "author": "Dynnfa",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
