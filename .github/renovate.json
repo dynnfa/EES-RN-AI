@@ -8,44 +8,44 @@
   "automerge": false,
   "packageRules": [
     {
-      "description": "Expo core packages and React Native core packages require careful updating",
+      "description": "Expo and React Native core - strict stability",
       "matchPackagePatterns": ["^expo-", "^react-native$", "^react$", "^react-dom$"],
       "automerge": false,
       "stabilityDays": 3
     },
     {
-      "description": "React Native ecosystem packages require special handling",
+      "description": "React Native ecosystem - strict stability",
       "matchPackagePatterns": ["@react-navigation/", "@react-native/", "react-native-"],
       "automerge": false,
       "stabilityDays": 3
     },
     {
-      "description": "Development tools and configuration packages can be updated more frequently",
-      "matchDepTypes": ["devDependencies"],
-      "automerge": true,
-      "stabilityDays": 1
-    },
-    {
-      "description": "NativeWind and styling related packages",
+      "description": "Styling packages - moderate stability",
       "matchPackagePatterns": ["nativewind", "tailwindcss", "tailwind-variants"],
       "stabilityDays": 2
     },
     {
-      "description": "Block React Native major version updates",
+      "description": "Auto-merge non-major devDependencies updates",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true,
+      "stabilityDays": 1
+    },
+    {
+      "description": "Never automerge major updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "description": "Block React Native major version updates (e.g. going to v1.0.0)",
       "matchPackageNames": ["react-native"],
       "allowedVersions": "< 1.0.0"
     },
     {
-      "description": "Block major version updates",
+      "description": "Ignore major updates for 0.x packages",
       "matchCurrentVersion": "/^0\\./",
       "matchUpdateTypes": ["major"],
       "enabled": false
-    },
-    {
-      "description": "Automatically merge minor and patch version security updates",
-      "matchUpdateTypes": ["patch", "minor"],
-      "matchDepTypes": ["devDependencies"],
-      "automerge": true
     }
   ]
 }
