@@ -1,148 +1,148 @@
-# Git Commit 规范
+# Git Commit Specification
 
-本项目采用 [Conventional Commits](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 规范，旨在为提交历史提供清晰的结构，便于自动化工具处理（如版本发布、变更日志生成等）。
+This project follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification to provide a clear structure for commit history, facilitating automated tool processing (such as version releases, changelog generation, etc.).
 
-## 提交格式
-
-```
-<类型>[可选的作用域]: <描述>
-
-[可选的正文]
-
-[可选的脚注]
-```
-
-## 类型
-
-必须是以下类型之一：
-
-- **feat**: 新增功能
-- **fix**: 修复 bug
-- **docs**: 仅修改文档
-- **style**: 不影响代码含义的修改（空白字符、格式等）
-- **refactor**: 既不修复 bug 也不添加功能的代码重构
-- **perf**: 性能优化
-- **test**: 添加或修改测试用例
-- **build**: 构建系统或外部依赖的修改
-- **ci**: CI 配置文件和脚本的修改
-- **chore**: 其他不修改源代码或测试用例的修改
-- **revert**: 回滚之前的提交
-
-## 作用域
-
-可选，用于指定修改的范围。例如：
+## Commit Format
 
 ```
-feat(auth): 添加登录功能
-fix(api): 修复用户信息接口
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer]
 ```
 
-## 描述
+## Type
 
-- 简明扼要地描述提交内容
-- 使用命令式、现在时态（如"添加"而不是"已添加"）
-- 不超过 50 个字符
-- 首字母不大写
-- 末尾不添加句号
+Must be one of the following types:
 
-## 正文
+- **feat**: a new feature
+- **fix**: a bug fix
+- **docs**: documentation only changes
+- **style**: changes that do not affect the meaning of the code (white-space, formatting, missing semi colons, etc)
+- **refactor**: a code change that neither fixes a bug nor adds a feature
+- **perf**: a code change that improves performance
+- **test**: adding missing tests or correcting existing tests
+- **build**: changes that affect the build system or external dependencies
+- **ci**: changes to CI configuration files and scripts
+- **chore**: other changes that don't modify src or test files
+- **revert**: reverts a previous commit
 
-可选，用于更详细地描述提交内容。
+## Scope
 
-- 使用命令式、现在时态
-- 每行不超过 72 个字符
-- 可以包含动机、修改前后的行为对比等
-
-## 脚注
-
-可选，用于引用问题、破坏性变更等。
-
-### 引用问题
+Optional, used to specify the scope of the change. For example:
 
 ```
-fix: 修复登录失败问题
+feat(auth): add login functionality
+fix(api): fix user info API
+```
 
-解决用户输入正确密码但无法登录的问题。
+## Description
+
+- Concisely describe the commit content
+- Use imperative, present tense (e.g., "add" not "added")
+- No more than 50 characters
+- No capital letter at the beginning
+- No period at the end
+
+## Body
+
+Optional, used to describe the commit in more detail.
+
+- Use imperative, present tense
+- Each line no more than 72 characters
+- Can include motivation, behavior changes before and after, etc.
+
+## Footer
+
+Optional, used to reference issues, breaking changes, etc.
+
+### Referencing Issues
+
+```
+fix: fix login failure issue
+
+Fixes the issue where users cannot log in despite entering the correct password.
 
 Closes #123
 ```
 
-### 破坏性变更
+### Breaking Changes
 
-破坏性变更必须在脚注中标记，并以 `BREAKING CHANGE:` 开头：
-
-```
-refactor: 重构用户数据结构
-
-重构用户数据结构以支持多角色系统。
-
-BREAKING CHANGE: 用户数据中的 `role` 字段从字符串变为对象，包含 `name` 和 `permissions` 属性。
-```
-
-## 示例
-
-### 功能新增
+Breaking changes must be marked in the footer and start with `BREAKING CHANGE:`:
 
 ```
-feat(auth): 添加第三方登录支持
+refactor: refactor user data structure
 
-新增微信、支付宝登录功能，用户可以选择使用第三方账号登录系统。
+Refactor user data structure to support multi-role system.
+
+BREAKING CHANGE: The `role` field in user data has changed from string to object, containing `name` and `permissions` attributes.
+```
+
+## Examples
+
+### Feature Addition
+
+```
+feat(auth): add third-party login support
+
+Added WeChat and Alipay login functionality, users can choose to log in using third-party accounts.
 
 Closes #456
 ```
 
-### Bug 修复
+### Bug Fix
 
 ```
-fix(api): 修复用户头像上传失败问题
+fix(api): fix avatar upload failure
 
-解决大文件头像上传时超时的问题，增加文件大小限制和进度提示。
+Fixed timeout issue when uploading large avatar files, added file size limit and progress indicator.
 
 Closes #789
 ```
 
-### 文档更新
+### Documentation Update
 
 ```
-docs: 更新API文档
+docs: update API documentation
 
-完善用户管理接口的文档说明，添加参数示例和返回值说明。
+Enhanced documentation for user management interface, added parameter examples and return value descriptions.
 ```
 
-### 代码重构
+### Code Refactor
 
 ```
-refactor(utils): 重构日期处理函数
+refactor(utils): refactor date processing functions
 
-优化日期格式化和解析逻辑，提高代码可读性和性能。
+Optimized date formatting and parsing logic, improved code readability and performance.
 ```
 
-### 性能优化
+### Performance Optimization
 
 ```
-perf(list): 优化列表渲染性能
+perf(list): optimize list rendering performance
 
-使用虚拟滚动技术减少DOM节点数量，提高长列表的渲染速度。
+Used virtual scrolling to reduce DOM node count, improving rendering speed for long lists.
 ```
 
-## 最佳实践
+## Best Practices
 
-1. 每个提交应尽可能小，只包含一个逻辑更改
-2. 提交消息应清晰地说明"做了什么"和"为什么做"
-3. 避免使用模糊的描述，如"修复了一些问题"、"更新了代码"
-4. 对于大型变更，可拆分为多个小提交
-5. 使用英文或中文均可，但团队内部应保持一致
+1. Each commit should be as small as possible, containing only one logical change
+2. Commit messages should clearly explain "what was done" and "why"
+3. Avoid vague descriptions like "fixed some issues" or "updated code"
+4. For large changes, split them into multiple smaller commits
+5. Either English or Chinese can be used, but the team should remain consistent internally
 
-## 工具支持
+## Tool Support
 
-可以使用以下工具来辅助遵循此规范：
+The following tools can be used to help follow this specification:
 
-- **commitlint**: 验证提交消息格式
-- **husky**: 配合 commitlint 在提交前进行验证
-- **standard-version**: 根据提交历史自动生成变更日志和版本号
+- **commitlint**: validate commit message format
+- **husky**: work with commitlint to validate before commit
+- **standard-version**: automatically generate changelog and version numbers based on commit history
 
-## 相关链接
+## Related Links
 
-- [Conventional Commits 官方文档](https://www.conventionalcommits.org/zh-hans/v1.0.0/)
+- [Conventional Commits Official Documentation](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
-- [Commitizen](https://github.com/commitizen/cz-cli): 交互式提交消息生成工具
+- [Commitizen](https://github.com/commitizen/cz-cli): interactive commit message generation tool

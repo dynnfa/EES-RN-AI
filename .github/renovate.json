@@ -1,0 +1,86 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 9am on Monday"],
+  "timezone": "Asia/Shanghai",
+  "prConcurrentLimit": 10,
+  "rebaseWhen": "conflicted",
+  "automerge": false,
+  "packageRules": [
+    {
+      "description": "Disable Expo and React Native core updates",
+      "matchPackagePatterns": ["^expo$", "expo-", "^react-native$"],
+      "enabled": false
+    },
+    {
+      "description": "Disable React core libraries updates",
+      "matchPackageNames": ["react", "react-dom", "react-native-web"],
+      "enabled": false
+    },
+    {
+      "description": "Disable React Navigation ecosystem updates",
+      "matchPackagePatterns": ["@react-navigation/"],
+      "enabled": false
+    },
+    {
+      "description": "Disable critical animation and gesture libraries",
+      "matchPackageNames": [
+        "react-native-reanimated",
+        "react-native-gesture-handler",
+        "react-native-screens",
+        "react-native-safe-area-context",
+        "@legendapp/motion"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Disable styling foundation libraries",
+      "matchPackageNames": ["nativewind", "tailwindcss", "tailwind-variants"],
+      "enabled": false
+    },
+    {
+      "description": "Disable UI framework and critical dependencies",
+      "matchPackageNames": [
+        "@gluestack-ui/core",
+        "@gluestack-ui/utils",
+        "react-native-svg",
+        "react-native-worklets",
+        "react-aria",
+        "react-stately"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Disable TypeScript and linting tools",
+      "matchPackageNames": ["typescript", "eslint", "eslint-config-expo", "@types/react"],
+      "enabled": false
+    },
+    {
+      "description": "Disable build system and git hooks",
+      "matchPackageNames": [
+        "babel-plugin-module-resolver",
+        "husky",
+        "@commitlint/cli",
+        "@commitlint/config-conventional"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Allow manual updates for formatting and utilities",
+      "matchPackageNames": ["prettier", "prettier-plugin-tailwindcss"],
+      "automerge": false,
+      "stabilityDays": 1
+    },
+    {
+      "description": "Allow manual updates for other dependencies",
+      "matchPackagePatterns": ["@expo/vector-icons", "@expo/html-elements", "expo-.*"],
+      "automerge": false,
+      "stabilityDays": 2
+    },
+    {
+      "description": "Block major version updates across the board",
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}

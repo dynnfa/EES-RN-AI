@@ -1,5 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-# 暂时注释掉test命令，因为项目还没有测试脚本
-# npm test
